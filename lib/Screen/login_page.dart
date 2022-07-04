@@ -20,12 +20,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    PostApi(_emailController.text.trim(), _passwordController.text.trim());
-  }
-
   final String login_api_url = "http://myjson.dit.upm.es/api/bins/gbt5";
   var statuscode;
   var postapiStatus;
@@ -108,8 +102,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: CommanButton(
-                      text: "Sign in", visible: false, ontap: () {}),
+                  child: GestureDetector(
+                    onTap: () {
+                      PostApi(_emailController.text.trim(),
+                          _passwordController.text.trim());
+                    },
+                    child: CommanButton(
+                        text: "Sign in", visible: false, ontap: () {}),
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
