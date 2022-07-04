@@ -6,16 +6,21 @@ import 'package:flutter/material.dart';
 
 class LoginTextfield extends StatelessWidget {
   LoginTextfield(
-      {Key? key, required this.controller, required this.hintText, this.icon})
+      {Key? key,
+      required this.controller,
+      required this.hintText,
+      this.icon,
+      required this.validator})
       : super(key: key);
   final TextEditingController controller;
   final String hintText;
   final Widget? icon;
+  final Function() validator;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Container(
         alignment: Alignment.center,
         height: MediaQuery.of(context).size.width / 6,
@@ -24,7 +29,7 @@ class LoginTextfield extends StatelessWidget {
             color: Colors.white.withOpacity(0.1),
             borderRadius: BorderRadius.circular(25)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: TextFormField(
             controller: controller,
             style: const TextStyle(
