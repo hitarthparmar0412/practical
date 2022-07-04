@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
+import 'package:technource/Screen/splash_screen.dart';
 import 'package:technource/widgets/comman_button.dart';
 
 import '../widgets/login_textfield.dart';
@@ -31,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
                 flex: 4,
               ),
               const Text(
-                "welcome Back!",
+                "Welcome Back!",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25,
@@ -79,10 +80,20 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: CommanButton(
-                  text: "Sign in",
-                  visible: false,
-                  ontap: () {},
-                ),
+                    text: "Sign in",
+                    visible:false,
+                    ontap: () {
+                      if (_emailController.toString().isEmpty &&
+                          _passwordController.toString().isEmpty) {
+                        return "* Required";
+                      } else if (_passwordController.toString().length < 6) {
+                        return "Password should be atleast 6 characters";
+                      } else if (_passwordController.toString().length > 15) {
+                        return "Password should not be greater than 15 characters";
+                      } 
+                      
+                      
+                    }),
               ),
               const SizedBox(
                 height: 10,
