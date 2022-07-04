@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   String _token = "";
   static String _isActive = "";
 
-  Future<http.Response> PostApi(String email, String password) async {
+  Future<http.Response> postApi(String email, String password) async {
     var postapiresponse = await http.post(Uri.parse(login_api_url),
         body: (<String, String>{
           'email': email,
@@ -170,6 +170,8 @@ class _LoginPageState extends State<LoginPage> {
                     text: "Sign in",
                     visible: false,
                     ontap: () {
+                      postApi(_emailController.text.trim(),
+                          _passwordController.text.trim());
                       if (_formKey.currentState!.validate()) {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => Container()),
