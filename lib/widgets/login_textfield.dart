@@ -5,10 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 class LoginTextfield extends StatelessWidget {
-  LoginTextfield({Key? key, required this.controller, required this.hintText})
+  LoginTextfield(
+      {Key? key, required this.controller, required this.hintText, this.icon})
       : super(key: key);
   final TextEditingController controller;
   final String hintText;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +18,11 @@ class LoginTextfield extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Container(
         alignment: Alignment.center,
-        height: 60,
+        height: MediaQuery.of(context).size.width / 6,
+        width: MediaQuery.of(context).size.width / 1.2,
         decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(20)),
+            borderRadius: BorderRadius.circular(25)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: TextFormField(
@@ -28,7 +31,7 @@ class LoginTextfield extends StatelessWidget {
               color: Colors.white,
             ),
             decoration: InputDecoration(
-              suffixIcon: Icon(Icons.remove_red_eye_outlined),
+              suffixIcon: icon,
               border: InputBorder.none,
               hintText: hintText,
               hintStyle: const TextStyle(

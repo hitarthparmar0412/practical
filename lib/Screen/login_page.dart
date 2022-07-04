@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
+import 'package:technource/widgets/comman_button.dart';
 
 import '../widgets/login_textfield.dart';
 
@@ -18,24 +19,26 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Spacer(
+              const Spacer(
                 flex: 4,
               ),
               const Text(
                 "welcome Back!",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25,
                   color: Colors.white,
                 ),
               ),
-              Spacer(
+              const Spacer(
                 flex: 1,
               ),
               Text(
@@ -45,19 +48,20 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.white.withOpacity(0.2),
                 ),
               ),
-              Spacer(
+              const Spacer(
                 flex: 4,
               ),
               LoginTextfield(
                 controller: _emailController,
-                hintText: 'Enter a Email-Id',
+                hintText: 'Email-Id',
               ),
               LoginTextfield(
                 controller: _passwordController,
                 hintText: 'Password',
-              ),
-              Spacer(
-                flex: 1,
+                icon: const Icon(
+                  Icons.remove_red_eye_outlined,
+                  color: Colors.grey,
+                ),
               ),
               Align(
                 alignment: Alignment.centerRight,
@@ -69,26 +73,46 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {},
                 ),
               ),
-              Spacer(
+              const Spacer(
                 flex: 8,
               ),
-              Container(
-                child: Text("Sign in"),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.indigoAccent),
-                height: 60,
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: CommanButton(
+                  text: "Sign in",
+                  visible: false,
+                  ontap: () {},
+                ),
               ),
-              Spacer(
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: CommanButton(
+                    ontap: () {}, text: "Sigin With Google", visible: true),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "Don't have an account",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              const Spacer(
                 flex: 1,
               ),
               Container(),
-              Spacer(flex: 2),
-              Spacer(
+              const Spacer(flex: 2),
+              const Spacer(
                 flex: 3,
               )
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
