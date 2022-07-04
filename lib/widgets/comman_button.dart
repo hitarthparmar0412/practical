@@ -24,7 +24,7 @@ class CommanButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (visible == true) Icon(Icons.add),
+            if (visible == true) const Icon(Icons.add),
             Align(
               alignment: Alignment.center,
               child: Padding(

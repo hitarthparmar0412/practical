@@ -37,12 +37,14 @@ class _LoginPageState extends State<LoginPage> {
     return postapiresponse;
   }
 
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Form(
+          key: _formKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
             child: Column(
@@ -73,18 +75,80 @@ class _LoginPageState extends State<LoginPage> {
                 const Spacer(
                   flex: 4,
                 ),
-                LoginTextfield(
-                  validator: () {},
-                  controller: _emailController,
-                  hintText: 'Email-Id',
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: MediaQuery.of(context).size.width / 6,
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: TextFormField(
+                          validator: ((value) {
+                            if (value.toString().isEmpty) {
+                              return "Please Enter a valid Email";
+                            }
+                          }),
+                          onChanged: (value) {
+                            String name = value;
+                          },
+                          obscureText: false,
+                          controller: _emailController,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Email ID",
+                            hintStyle: const TextStyle(
+                              color: Colors.white54,
+                            ),
+                          ),
+                        )),
+                  ),
                 ),
-                LoginTextfield(
-                  validator: () {},
-                  controller: _passwordController,
-                  hintText: 'Password',
-                  icon: const Icon(
-                    Icons.remove_red_eye_outlined,
-                    color: Colors.grey,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: MediaQuery.of(context).size.width / 6,
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: TextFormField(
+                        validator: ((value) {
+                          if (value.toString().isEmpty) {
+                            return "Please Enter Corrcet Password";
+                          }
+                          return null;
+                        }),
+                        onChanged: (value) {
+                          var password = value;
+                        },
+                        obscureText: true,
+                        controller: _passwordController,
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
+                        decoration: const InputDecoration(
+                          suffixIcon: Icon(
+                            Icons.remove_red_eye_outlined,
+                            color: Colors.grey,
+                          ),
+                          border: InputBorder.none,
+                          hintText: "Password",
+                          hintStyle: const TextStyle(
+                            color: Colors.white54,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 Align(
@@ -102,13 +166,16 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: GestureDetector(
-                    onTap: () {
-                      PostApi(_emailController.text.trim(),
-                          _passwordController.text.trim());
+                  child: CommanButton(
+                    text: "Sign in",
+                    visible: false,
+                    ontap: () {
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Container()),
+                        );
+                      }
                     },
-                    child: CommanButton(
-                        text: "Sign in", visible: false, ontap: () {}),
                   ),
                 ),
                 const SizedBox(
