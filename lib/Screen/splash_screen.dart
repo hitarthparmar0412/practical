@@ -11,8 +11,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
-
   // _timer() {
   //   return Timer(
   //     const Duration(seconds: 3),
@@ -23,7 +21,6 @@ class _SplashScreenState extends State<SplashScreen> {
   //         )),
   //   );
   // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +31,6 @@ class _SplashScreenState extends State<SplashScreen> {
             width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
               image: DecorationImage(
-
                 colorFilter: ColorFilter.mode(Colors.black26, BlendMode.color),
                 fit: BoxFit.cover,
                 image: NetworkImage(
