@@ -7,7 +7,6 @@ import 'package:flutter/widgets.dart';
 import 'package:technource/Screen/splash_screen.dart';
 import 'package:technource/widgets/comman_button.dart';
 import 'package:http/http.dart' as http;
-import '../widgets/login_textfield.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -102,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.white.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(25)),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextFormField(
                         validator: ((value) {
                           if (value.toString().isEmpty) {
@@ -125,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           border: InputBorder.none,
                           hintText: "Password",
-                          hintStyle: const TextStyle(
+                          hintStyle: TextStyle(
                             color: Colors.white54,
                           ),
                         ),
@@ -184,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                 const Spacer(flex: 2),
                 const Spacer(
                   flex: 3,
-                )
+                ),
               ],
             ),
           ),
