@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:technource/Screen/splash_screen.dart';
 import 'package:technource/widgets/comman_button.dart';
-
+import 'package:http/http.dart' as http;
 import '../widgets/login_textfield.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,6 +19,30 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    PostApi(_emailController.text.trim(), _passwordController.text.trim());
+  }
+
+  final String login_api_url = "http://myjson.dit.upm.es/api/bins/gbt5";
+  var statuscode;
+  var postapiStatus;
+  String _token = "";
+  static String _isActive = "";
+
+  Future<http.Response> PostApi(String email, String password) async {
+    var postapiresponse = await http.post(Uri.parse(login_api_url),
+        body: (<String, String>{
+          'email': email,
+          'password': password,
+        }));
+    postapiStatus = postapiresponse;
+    var a = jsonDecode(postapiresponse.body);
+    return postapiresponse;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
