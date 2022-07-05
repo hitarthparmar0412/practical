@@ -172,12 +172,18 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  "Don't have an account",
-                  style: TextStyle(
-                    color: Colors.white,
+                RichText(
+                    text: const TextSpan(children: [
+                  TextSpan(
+                    text: "Don't have an Account? ",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
-                ),
+                  TextSpan(
+                      text: "Sign Up",
+                      style: TextStyle(color: Colors.indigoAccent))
+                ])),
                 const Spacer(
                   flex: 1,
                 ),
