@@ -24,7 +24,13 @@ class CommanButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (visible == true) const Icon(Icons.add),
+            if (visible == true)
+              Image.network(
+                "https://img.icons8.com/color/344/google-logo.png",
+                fit: BoxFit.contain,
+                height: 25,
+                width: 25,
+              ),
             Align(
               alignment: Alignment.center,
               child: Padding(

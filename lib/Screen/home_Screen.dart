@@ -40,32 +40,34 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-          child: !_isLoading
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: userModel[0]?.profilePic != null
-                            ? Image.network(userModel[0]!.profilePic.toString())
-                            : SizedBox()),
-                    Text(
-                      userModel[0]?.name ?? "",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      userModel[0]?.emailId ?? "",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                )
-              : const Align(
-                  alignment: Alignment.center,
-                  child: CircularProgressIndicator())),
+        child: !_isLoading
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: userModel[0]?.profilePic != null
+                          ? Image.network(userModel[0]!.profilePic.toString())
+                          : const SizedBox()),
+                  Text(
+                    userModel[0]?.name ?? "",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    userModel[0]?.emailId ?? "",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ],
+              )
+            : const Align(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator(),
+              ),
+      ),
     );
   }
 }
