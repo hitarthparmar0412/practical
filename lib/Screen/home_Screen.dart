@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<UserModel?> userModel = [];
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -30,28 +31,33 @@ class _HomePageState extends State<HomePage> {
     var usersList = [decodedJson["data"]];
     userModel = List.from(usersList).map((e) => UserModel.fromJson(e)).toList();
     log(response.body.toString());
+    _isLoading = false;
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            const Text("Create new Account"),
-            const Text("Please Fill in the form"),
-            LoginTextfield(
-                hintText: "Full Name",
-                text: userModel[0]?.name ?? "",
-                observeText: false),
-            LoginTextfield(
-                hintText: "Email Aaddress",
-                text: userModel[0]?.emailId ?? "",
-                observeText: false),
-            LoginTextfield(hintText: "Password", text: "", observeText: true),
-          ],
-        ),
-      ),
+          child: !_isLoading
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(),
+                    Text(
+                      userModel[0]?.name ?? "",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      userModel[0]?.emailId ?? "",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                )
+              : const Align(
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator())),
     );
   }
 }
