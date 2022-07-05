@@ -44,6 +44,14 @@ class _HomePageState extends State<HomePage> {
               ? Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    LoginTextfield(
+                        hintText: userModel[0]?.name ?? "",
+                        text: "name",
+                        observeText: false),
+                    LoginTextfield(
+                        text: "email id",
+                        hintText: userModel[0]?.emailId ?? "",
+                        observeText: false),
                     Container(
                         width: 100,
                         height: 100,
@@ -53,14 +61,6 @@ class _HomePageState extends State<HomePage> {
                         child: userModel[0]?.profilePic != null
                             ? Image.network(userModel[0]!.profilePic.toString())
                             : SizedBox()),
-                    Text(
-                      userModel[0]?.name ?? "",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      userModel[0]?.emailId ?? "",
-                      style: TextStyle(color: Colors.white),
-                    ),
                   ],
                 )
               : const Align(
