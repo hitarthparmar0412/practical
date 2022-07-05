@@ -1,13 +1,10 @@
 import 'dart:convert';
+import 'dart:developer';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
-import 'package:technource/Screen/splash_screen.dart';
 import 'package:technource/widgets/comman_button.dart';
 import 'package:http/http.dart' as http;
-import '../widgets/login_textfield.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -23,10 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final String login_api_url = "http://myjson.dit.upm.es/api/bins/gbt5";
   var statuscode;
   var postapiStatus;
-  String _token = "";
-  static String _isActive = "";
-
-  Future<http.Response> postApi(String email, String password) async {
+  Future<http.Response?>? postApi(String email, String password) async {
     var postapiresponse = await http.post(Uri.parse(login_api_url),
         body: (<String, String>{
           'email': email,
@@ -34,7 +28,13 @@ class _LoginPageState extends State<LoginPage> {
         }));
     postapiStatus = postapiresponse;
     var a = jsonDecode(postapiresponse.body);
-    return postapiresponse;
+    if (a.statuscode != 200) {
+      log("api statuscode is not 200");
+      throw Exception("api statuscode is not 200");
+    }
+    if (a.statuscode == 200 && postapiresponse != null) {
+      return postapiresponse;
+    }
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -76,7 +76,8 @@ class _LoginPageState extends State<LoginPage> {
                   flex: 4,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Container(
                     alignment: Alignment.center,
                     height: MediaQuery.of(context).size.width / 6,
@@ -85,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.white.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(25)),
                     child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
                           validator: ((value) {
                             if (value.toString().isEmpty) {
@@ -100,10 +101,10 @@ class _LoginPageState extends State<LoginPage> {
                           style: const TextStyle(
                             color: Colors.white,
                           ),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "Email ID",
-                            hintStyle: const TextStyle(
+                            hintStyle: TextStyle(
                               color: Colors.white54,
                             ),
                           ),
@@ -111,7 +112,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Container(
                     alignment: Alignment.center,
                     height: MediaQuery.of(context).size.width / 6,
@@ -120,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.white.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(25)),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextFormField(
                         validator: ((value) {
                           if (value.toString().isEmpty) {
@@ -143,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           border: InputBorder.none,
                           hintText: "Password",
-                          hintStyle: const TextStyle(
+                          hintStyle: TextStyle(
                             color: Colors.white54,
                           ),
                         ),
