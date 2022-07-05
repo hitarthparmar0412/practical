@@ -44,7 +44,14 @@ class _HomePageState extends State<HomePage> {
               ? Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Container(),
+                    Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50)),
+                        child: userModel[0]?.profilePic != null
+                            ? Image.network(userModel[0]!.profilePic.toString())
+                            : SizedBox()),
                     Text(
                       userModel[0]?.name ?? "",
                       style: TextStyle(color: Colors.white),
