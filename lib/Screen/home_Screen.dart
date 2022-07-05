@@ -39,33 +39,55 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: !_isLoading
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: userModel[0]?.profilePic != null
-                            ? Image.network(userModel[0]!.profilePic.toString())
-                            : SizedBox()),
-                    LoginTextfield(
-                        hintText: userModel[0]?.name ?? "",
-                        text: "name",
-                        observeText: false),
-                    LoginTextfield(
-                        text: "email id",
-                        hintText: userModel[0]?.emailId ?? "",
-                        observeText: false),
+              ? Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30, top: 90),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: userModel[0]?.profilePic != null
+                                  ? Image.network(
+                                      userModel[0]!.profilePic.toString())
+                                  : const CircularProgressIndicator()),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          AbsorbPointer(
+                            absorbing: true,
+                            child: LoginTextfield(
+                                hintText: userModel[0]?.name ?? "",
+                                text: "name",
+                                observeText: false),
+                          ),
+                          AbsorbPointer(
+                            absorbing: true,
+                            child: LoginTextfield(
+                                text: "email id",
+                                hintText: userModel[0]?.emailId ?? "",
+                                observeText: false),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 )
               : const Align(
                   alignment: Alignment.center,
-                  child: CircularProgressIndicator())),
+                  child: CircularProgressIndicator(),
+                ),
+        ),
+      ),
     );
   }
 }
