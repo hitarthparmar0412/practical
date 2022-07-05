@@ -151,15 +151,17 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: CommanButton(
-                    text: "Sign in",
-                    visible: false,
-                    ontap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomePage()));
-                    },
-                  ),
+                      text: "Sign in",
+                      visible: false,
+                      ontap: () {
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()),
+                          );
+                        }
+                      }),
                 ),
                 const SizedBox(
                   height: 10,
