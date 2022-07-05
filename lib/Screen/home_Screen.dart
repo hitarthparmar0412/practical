@@ -6,6 +6,8 @@ import 'package:technource/Model/user_model.dart';
 import 'package:technource/widgets/login_textfield.dart';
 import 'package:http/http.dart' as http;
 
+import '../widgets/comman_button.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -76,6 +78,14 @@ class _HomePageState extends State<HomePage> {
                                 text: "email id",
                                 hintText: userModel[0]?.emailId ?? "",
                                 observeText: false),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 10),
+                            child: CommanButton(
+                                ontap: () {}, text: "Submit", visible: false),
                           ),
                         ],
                       ),
