@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 class LoginTextfield extends StatelessWidget {
   LoginTextfield(
       {Key? key,
-      required this.controller,
+      this.controller,
       required this.hintText,
       this.icon,
       required this.text,
       required this.observeText})
       : super(key: key);
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String hintText;
   final Widget? icon;
   final String text;

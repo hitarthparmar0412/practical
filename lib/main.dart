@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'Screen/splash_screen.dart';
 
 void main(List<String> args) {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
