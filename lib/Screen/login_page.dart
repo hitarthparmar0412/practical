@@ -71,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
+                          keyboardType: TextInputType.emailAddress,
                           validator: ((value) {
                             if (value.toString().isEmpty) {
                               return "Please Enter a valid Email";
