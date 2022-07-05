@@ -1,7 +1,7 @@
 class UserModel {
-  late String profilePic;
-  late String name;
-  late String emailId;
+  late String? profilePic;
+  late String? name;
+  late String? emailId;
 
   UserModel(
       {required this.profilePic, required this.name, required this.emailId});
