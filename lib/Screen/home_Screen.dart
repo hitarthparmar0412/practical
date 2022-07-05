@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                               child: userModel[0]?.profilePic != null
                                   ? Image.network(
                                       userModel[0]!.profilePic.toString())
-                                  : const SizedBox()),
+                                  : const CircularProgressIndicator()),
                           const SizedBox(
                             height: 10,
                           ),
