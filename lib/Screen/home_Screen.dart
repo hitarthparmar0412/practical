@@ -48,7 +48,8 @@ class _HomePageState extends State<HomePage> {
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50)),
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                         child: userModel[0]?.profilePic != null
                             ? Image.network(userModel[0]!.profilePic.toString())
                             : SizedBox()),
